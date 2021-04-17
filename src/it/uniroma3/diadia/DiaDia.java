@@ -38,10 +38,7 @@ public class DiaDia {
 			"o regalarli se pensi che possano ingraziarti qualcuno.\n\n"+
 			"Per conoscere le istruzioni usa il comando \u001B[32m 'aiuto'\u001B[0m. ";
 
-//	static final private String[] elencoComandi = {"vai", "aiuto", "fine", "prendi", "posa", "elimina", "aggiungi"};
-
 	private Partita partita;
-//	private Borsa borsa;
 	private IOConsole io;
 
 	public IOConsole getIo() {
@@ -54,8 +51,6 @@ public class DiaDia {
 
 	public DiaDia() {
 		this.partita = new Partita();
-//		this.borsa = new Borsa();
-//		this.io = new IOConsole();
 	}
 
 	public void gioca() {
@@ -65,10 +60,7 @@ public class DiaDia {
 
 		do		
 			istruzione = this.io.leggiRiga();
-		while (!processaIstruzione(istruzione));
-
-		
-		
+		while (!processaIstruzione(istruzione));	
 	}   
 
 
@@ -90,10 +82,7 @@ public class DiaDia {
 		if (!this.partita.giocatoreIsVivo())
 			this.io.mostraMessaggio("Hai esaurito i CFU...");
 		return this.partita.isFinita();
-
 	}   
-
-
 
 	public static void main(String[] argc) {
 		DiaDia gioco = new DiaDia();
