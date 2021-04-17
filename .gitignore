@@ -1,5 +1,6 @@
 /bin/
 /.settings/
+/settings/
 
 # Log file
 *.log
