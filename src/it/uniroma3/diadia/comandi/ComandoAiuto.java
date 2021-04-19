@@ -1,6 +1,6 @@
 package it.uniroma3.diadia.comandi;
 
-import it.uniroma3.diadia.IOConsole;
+import it.uniroma3.diadia.IO;
 import it.uniroma3.diadia.Partita;
 
 public class ComandoAiuto implements Comando {
@@ -11,15 +11,13 @@ public class ComandoAiuto implements Comando {
 	
 	static final private String[] elencoComandi = {
 			"vai", "aiuto", "fine", "prendi", "posa", "guarda"};
-	private IOConsole io;
+	private IO io;
 
 	@Override
 	public void esegui(Partita partita) {
 		StringBuilder s = new StringBuilder();
-		s.append("\n-Ti trovi nella stanza\n  " + ANSI_YELLOW + partita.getStanzaCorrente() + ANSI_RESET);
 		s.append("\n-Sono disponibili i seguenti comandi: " + ANSI_CYAN);
 		s.append("\t");
-			
 		for(int i=0; i< elencoComandi.length; i++) 
 			s.append(elencoComandi[i]+" ");
 		s.append(ANSI_RESET + "$ ");
@@ -32,7 +30,7 @@ public class ComandoAiuto implements Comando {
 	}
 
 	@Override
-	public void setIO(IOConsole console) {
+	public void setIO(IO console) {
 		this.io = console;
 	}
 
