@@ -1,12 +1,12 @@
-package it.uniroma3.diadia.comandi;
+ package it.uniroma3.diadia.comandi;
 
-import it.uniroma3.diadia.IOConsole;
+import it.uniroma3.diadia.IO;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 public class ComandoPosa implements Comando {
 
-	private IOConsole io;
+	private IO io;
 	private String par;
 
 	public static final String ANSI_RED = "\u001B[31m";
@@ -31,7 +31,7 @@ public class ComandoPosa implements Comando {
 	}
 
 	@Override
-	public void setIO(IOConsole console) {
+	public void setIO(IO console) {
 		this.io = console;
 	}
 	

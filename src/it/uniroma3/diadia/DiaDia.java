@@ -28,7 +28,7 @@ public class DiaDia {
 	public static final String ANSI_CYAN = "\u001B[36m";
 	public static final String ANSI_WHITE = "\u001B[37m";
 
-	static final private String MESSAGGIO_BENVENUTO = ""+
+	static final private String MESSAGGIO_BENVENUTO = "HW2\n"+
 			"Ti trovi nell'Universita', ma oggi e' diversa dal solito...\n" +
 			"Meglio andare al piu' presto in biblioteca a studiare. Ma dov'e'?\n"+
 			"I locali sono popolati da strani personaggi, " +
@@ -39,18 +39,19 @@ public class DiaDia {
 			"Per conoscere le istruzioni usa il comando \u001B[32m 'aiuto'\u001B[0m. ";
 
 	private Partita partita;
-	private IOConsole io;
+	private IO io;
 
-	public IOConsole getIo() {
+	public IO getIo() {
 		return io;
 	}
 
-	public void setIo(IOConsole io) {
+	public void setIo(IO io) {
 		this.io = io;
 	}
 
-	public DiaDia() {
+	public DiaDia(IO io) {
 		this.partita = new Partita();
+		this.io = io;
 	}
 
 	public void gioca() {
@@ -85,8 +86,7 @@ public class DiaDia {
 	}   
 
 	public static void main(String[] argc) {
-		DiaDia gioco = new DiaDia();
-		gioco.setIo(new IOConsole());
+		DiaDia gioco = new DiaDia(new IOConsole());
 		gioco.gioca();
 	}
 }

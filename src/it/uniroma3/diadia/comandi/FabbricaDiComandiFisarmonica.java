@@ -6,15 +6,19 @@ import it.uniroma3.diadia.IOConsole;
 
 public class FabbricaDiComandiFisarmonica implements FabbricaDiComandi {
 
+	String nomeComando = null;
+	String parametro = null;
+	
 	public FabbricaDiComandiFisarmonica() {
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public Comando costruisciComando(String istruzione) {
+		@SuppressWarnings("resource")
 		Scanner scannerDiParole = new Scanner(istruzione);
-		String nomeComando = null;
-		String parametro = null;
+		nomeComando = null;
+		parametro = null;
 		Comando comando = null;
 		
 		if (scannerDiParole.hasNext())
@@ -35,13 +39,23 @@ public class FabbricaDiComandiFisarmonica implements FabbricaDiComandi {
 
 		else if (nomeComando.equals("fine")) comando = new ComandoFine();
 
-//		else if (nomeComando.equals("guarda")) comando = new ComandoGuarda();
+		else if (nomeComando.equals("guarda")) comando = new ComandoGuarda();
 
 		else comando = new ComandoNonValido(); 
 		comando.setIO(new IOConsole());
 		comando.setParametro(parametro);
 		
 		return comando;
+	}
+
+	@Override
+	public String getNome() {
+		return this.nomeComando;
+	}
+
+	@Override
+	public String getParametro() {
+		return this.parametro;
 	}
 
 }
