@@ -8,7 +8,8 @@ import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 public class BorsaTest {
 	
-	private Borsa test = new Borsa();
+	Borsa test;
+	
 	Attrezzo[] attrezzi = {
 			new Attrezzo("osso", 1), new Attrezzo("mazza", 4), 
 			new Attrezzo("cane", 10), new Attrezzo("vaso", 15),
@@ -22,18 +23,11 @@ public class BorsaTest {
 
 	@Before
 	public void setUp() {
-		if(test.getNumeroAttrezzi() != 0) {
-			test.setNumeroAttrezzi(0);
-			Attrezzo[] temp = test.getAttrezzi();
-			for(int i = 0; i < temp.length; i++) {
-				temp[i] = null;
-			}
-		}
+		test = new Borsa();
 	}
 
 	@Test
 	public void testIsEmptyTrue() {
-		test.setNumeroAttrezzi(0);
 		assertTrue(test.isEmpty());
 	}
 	

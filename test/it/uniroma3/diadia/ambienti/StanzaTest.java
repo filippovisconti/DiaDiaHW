@@ -20,13 +20,13 @@ public class StanzaTest {
 
 	String[] direzione = {"nord", "sud", "est", "ovest"};
 	
-	Stanza test = new Stanza("Test");
-	Stanza atrio = new Stanza("atrio");
-	Stanza mensa = new Stanza("mensa");
+	Stanza test;
+	Stanza atrio;
+	Stanza mensa;
 
-	Stanza s1 = new Stanza("n18");
-	Stanza s2 = new Stanza("n11");
-	Stanza s3 = new Stanza("reattore nucleare");
+	Stanza s1;
+	Stanza s2;
+	Stanza s3;
 	
 	Attrezzo[] attrezzi = {
 			new Attrezzo("osso", 1), new Attrezzo("mazza", 4), 
@@ -44,13 +44,13 @@ public class StanzaTest {
 	 */
 	@Before
 	public void setUp() {
-		if(test.getNumeroAttrezzi() != 0) {
-			test.setNumeroAttrezzi(0);
-			Attrezzo[] temp = test.getAttrezzi();
-			for(int i = 0; i < temp.length; i++) {
-				temp[i] = null;
-			}
-		}
+		test = new Stanza("Test");
+		atrio = new Stanza("atrio");
+		mensa = new Stanza("mensa");
+
+		s1 = new Stanza("n18");
+		s2 = new Stanza("n11");
+		s3 = new Stanza("reattore nucleare");
 	}
 
 	/**
@@ -107,9 +107,6 @@ public class StanzaTest {
 	}
 	
 	
-	/**
-	 * 
-	 */
 	@Test
 	public void testAddAttrezzoAggiungoNull() {
 		assertFalse(test.addAttrezzo(null));
@@ -134,9 +131,6 @@ public class StanzaTest {
 		}
 	}
 	
-	/**
-	 * 
-	 */
 	@Test
 	public void testRemoveAttrezzoStandard() {
 		for(int i = 0; i < attrezzi.length; i++) {

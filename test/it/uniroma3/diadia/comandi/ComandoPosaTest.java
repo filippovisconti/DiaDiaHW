@@ -32,10 +32,10 @@ public class ComandoPosaTest {
 	@Test
 	public void eseguiPosaNull() {
 		
-		int n = this.p.getGiocatore().getBorsa().getNumeroAttrezzi();
+		int n = this.p.getGiocatore().getBorsa().getDimensione();
 		this.c.setParametro(null);
 		this.c.esegui(p);
-		assertEquals(n, this.p.getGiocatore().getBorsa().getNumeroAttrezzi());
+		assertEquals(n, this.p.getGiocatore().getBorsa().getDimensione());
 	}
 	
 	@Test

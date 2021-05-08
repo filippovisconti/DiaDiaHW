@@ -47,6 +47,9 @@ public class Borsa {
 		return peso;
 	}
 
+	public int getDimensione() {
+		return this.attrezzi.size();
+	}
 
 	public boolean hasAttrezzo(String nomeAttrezzo) {
 		if(nomeAttrezzo == null)
