@@ -1,6 +1,3 @@
-/**
- * 
- */
 package it.uniroma3.diadia.ambienti;
 
 import it.uniroma3.diadia.attrezzi.Attrezzo;
@@ -23,11 +20,17 @@ public class Labirinto {
     	Attrezzo lanterna = new Attrezzo("lanterna",3);
 		Attrezzo osso = new Attrezzo("osso",1); 
 		Attrezzo mazza = new Attrezzo("mazza",4); 
-		Attrezzo cane = new Attrezzo("cane",8); 
-		Attrezzo pianoforte = new Attrezzo("pianoforte",400); 
-		Attrezzo razzo = new Attrezzo("razzo", 2000);
-		Attrezzo tavolo = new Attrezzo("tavolo", 30); 
-		Attrezzo sedia = new Attrezzo("sedia", 15); 
+		Attrezzo cane = new Attrezzo("cane",5); 
+		Attrezzo pianoforte = new Attrezzo("pianoforte",4); 
+		Attrezzo razzo = new Attrezzo("razzo", 10);
+		Attrezzo tavolo = new Attrezzo("tavolo", 9); 
+		Attrezzo sedia = new Attrezzo("sedia", 5); 
+//	    Attrezzo vaso = new Attrezzo("vaso", 2);
+//	    Attrezzo falce = new Attrezzo("falce", 5);
+//	    Attrezzo pala = new Attrezzo("pala", 2); 
+//	    Attrezzo calcolatrice = new Attrezzo("calcolatrice", 11);
+	    Attrezzo chiave = new Attrezzo("chiave", 8);
+	    Attrezzo lampada = new Attrezzo("lampada", 8);
 		
     	
 		/* crea stanze del labirinto */
@@ -38,9 +41,9 @@ public class Labirinto {
 		Stanza laboratorio = new Stanza("Laboratorio Campus");
 		Stanza biblioteca = new Stanza("Biblioteca");
 		Stanza mensa = new Stanza("Mensa");
-		Stanza aulaMagna = new Stanza("Aula Magna");
+		Stanza aulaMagna = new StanzaBuia("Aula Magna", lampada.getNome());
 		Stanza segreteria = new Stanza("Segreteria");
-//		Stanza ufficiProf = new Stanza("Uffici dei professori");
+		Stanza ufficiProf = new StanzaBloccata("Uffici dei professori", chiave.getNome(), "est");
 		
 		
 		/* collega le stanze */
@@ -72,6 +75,9 @@ public class Labirinto {
 		segreteria.impostaStanzaAdiacente("nord", atrio);
 		segreteria.impostaStanzaAdiacente("est", aulaN10);
 		segreteria.impostaStanzaAdiacente("ovest", mensa);
+		segreteria.impostaStanzaAdiacente("sud", ufficiProf);
+		
+		ufficiProf.impostaStanzaAdiacente("nord", segreteria);
 		
 		
 		aulaMagna.impostaStanzaAdiacente("sud", atrio);
@@ -82,6 +88,7 @@ public class Labirinto {
         /* pone gli attrezzi nelle stanze */
 		aulaN10.addAttrezzo(lanterna);
 		atrio.addAttrezzo(osso);
+		atrio.addAttrezzo(lampada);
 		mensa.addAttrezzo(tavolo);
 		mensa.addAttrezzo(sedia);
 		aulaMagna.addAttrezzo(pianoforte);

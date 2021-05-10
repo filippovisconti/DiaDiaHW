@@ -3,7 +3,7 @@ package it.uniroma3.diadia;
 public class IOSimulator implements IO {
 
 	public IOSimulator() {
-		// TODO Auto-generated constructor stub
+		// TODO Implementare IOSimulator
 	}
 
 	@Override

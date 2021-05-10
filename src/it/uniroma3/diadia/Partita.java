@@ -26,6 +26,13 @@ public class Partita {
 		this.finita = false;
 
 	}
+	
+	public Partita(Labirinto labirinto){
+		this.setLabirinto(labirinto);
+		this.setGiocatore(new Giocatore(CFU_INIZIALI));
+		this.finita = false;
+
+	}
 
     /**
      * Crea tutte le stanze e le porte di collegamento
