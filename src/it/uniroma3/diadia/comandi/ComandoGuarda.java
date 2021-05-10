@@ -12,7 +12,7 @@ public class ComandoGuarda implements Comando {
 	@Override
 	public void esegui(Partita partita) {
 		StringBuilder s = new StringBuilder();
-		s.append("\n-Ti trovi nella stanza\n  " + ANSI_YELLOW + partita.getStanzaCorrente() + ANSI_RESET);
+		s.append("\n-Ti trovi nella stanza\n  " + ANSI_YELLOW + partita.getStanzaCorrente().getDescrizione() + ANSI_RESET);
 		this.io.mostraMessaggio(s.toString());
 
 	}

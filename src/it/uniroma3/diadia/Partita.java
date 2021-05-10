@@ -21,10 +21,7 @@ public class Partita {
 	private Giocatore giocatore = null;
 	
 	public Partita(){
-		this.setLabirinto(new Labirinto("Uni"));
-		this.setGiocatore(new Giocatore(CFU_INIZIALI));
-		this.finita = false;
-
+		this(new Labirinto("Università"));
 	}
 	
 	public Partita(Labirinto labirinto){
