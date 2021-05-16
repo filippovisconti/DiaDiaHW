@@ -115,7 +115,7 @@ public class Borsa {
 		Map<Integer, Set<Attrezzo>> mappaPerPeso = new TreeMap<>();
 
 		for (Attrezzo a : this.attrezzi.values()) {
-			if(mappaPerPeso.get(a.getPeso()) == null) 
+			if(mappaPerPeso.containsKey(a.getPeso())) 
 				mappaPerPeso.put(a.getPeso(), new TreeSet<Attrezzo>());
 			
 			mappaPerPeso.get(a.getPeso()).add(a);

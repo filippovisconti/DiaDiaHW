@@ -7,8 +7,12 @@ import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 public class LabirintoBuilder {
 	Map<String, Attrezzo> dbAttrezzi;
-
+	//key: nome della stanza
 	Map<String, Stanza> dbStanze;
+	
+	Labirinto l;
+	
+	private Stanza ultimaAggiunta;
 	
 //	/* crea gli attrezzi */
 //	Attrezzo lanterna, osso, mazza, cane, pianoforte, razzo, tavolo, sedia, chiave,lampada;
@@ -55,8 +59,8 @@ public class LabirintoBuilder {
 		
 	}
 
-	public Labirinto creaUniversità() {
-		Labirinto l = new Labirinto("Università");
+	public void creaUniversità() {
+		this.l = new Labirinto("Università");
 
 		/* collega le stanze */
 		dbStanze.get("atrio").impostaStanzaAdiacente("nord", dbStanze.get("aulaMagna"));
@@ -110,18 +114,82 @@ public class LabirintoBuilder {
 
 		// il gioco comincia nell'atrio
 		l.setStanzaCorrente(dbStanze.get("atrio"));  
-//		Integer index = (int) Math.floor(Math.random()*(dbStanze.size()+1)); // indice tra 0 e size dbStanze;
-//		Stanza random = (Stanza) new ArrayList<Stanza>(dbStanze.values()).get(index);
+		Integer index = (int) Math.floor(Math.random()*(dbStanze.size())); // indice tra 0 e size dbStanze-1;
+		@SuppressWarnings("unused")
+		Stanza random = (Stanza) new ArrayList<Stanza>(dbStanze.values()).get(index);
 //		l.setStanzaVincente(random);
-		l.setStanzaVincente(dbStanze.get("biblioteca"));
-		return l;
+		l.setStanzaVincente(dbStanze.get("aulaMagna"));
 
 	}
+	
+	public void addStanza(String nome) {
+		this.ultimaAggiunta = new Stanza(nome);
+		dbStanze.put(nome, ultimaAggiunta);
+	}
+	
+	public void addStanzaIniziale(String nome) {
+		this.ultimaAggiunta = new Stanza(nome);
+		dbStanze.put(nome, ultimaAggiunta);
+		l.setStanzaCorrente(ultimaAggiunta);
+	}
+	
+	public void addStanzaVincente(String nome) {
+		this.ultimaAggiunta = new Stanza(nome);
+		dbStanze.put(nome, ultimaAggiunta);
+		l.setStanzaVincente(ultimaAggiunta);
+		
+	}
+	
+	public void addAdiacenza(String src, String dst, String dir) {
+		dbStanze.get(src).impostaStanzaAdiacente(dir, dbStanze.get(dst));
+		
+		if(dir.equals("nord")) {
+			dbStanze.get(dst).impostaStanzaAdiacente("sud", dbStanze.get(src));
+		} else if(dir.equals("sud")) {
+			dbStanze.get(dst).impostaStanzaAdiacente("nord", dbStanze.get(src));
+		} else if(dir.equals("est")) {
+			dbStanze.get(dst).impostaStanzaAdiacente("ovest", dbStanze.get(src));
+		} else {
+			dbStanze.get(dst).impostaStanzaAdiacente("est", dbStanze.get(src));
+		}
+		
+	}
+	
+	public boolean addAttrezzoInUltimaStanzaAggiunta(String nomeAttrezzo, int peso) {
+		return this.ultimaAggiunta.addAttrezzo(new Attrezzo(nomeAttrezzo, peso));
+	}
+	
+	
+	public Labirinto getLabirinto() {
+		return l;
+	}
+
+	public void setLabirinto(Labirinto l) {
+		this.l = l;
+	}
+
+	public Stanza getUltimaAggiunta() {
+		return ultimaAggiunta;
+	}
+
+	public void setUltimaAggiunta(Stanza ultimaAggiunta) {
+		this.ultimaAggiunta = ultimaAggiunta;
+	}
+
 	public Labirinto creaLabirinto(String nome) {
 		if (nome.equals("Universita")) {
-			return creaUniversità();
+			creaUniversità();
 		}
-		return creaUniversità();
+		else l = new Labirinto(nome);
+		return getLabirinto();
+	}
+
+	public Map<String, Stanza> getDbStanze() {
+		return dbStanze;
+	}
+
+	public void setDbStanze(Map<String, Stanza> dbStanze) {
+		this.dbStanze = dbStanze;
 	}
 }
 

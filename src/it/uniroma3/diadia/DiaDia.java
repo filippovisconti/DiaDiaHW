@@ -1,5 +1,6 @@
 package it.uniroma3.diadia;
 
+import it.uniroma3.diadia.ambienti.Labirinto;
 import it.uniroma3.diadia.ambienti.LabirintoBuilder;
 import it.uniroma3.diadia.comandi.Comando;
 import it.uniroma3.diadia.comandi.FabbricaDiComandi;
@@ -29,7 +30,7 @@ public class DiaDia {
 	public static final String ANSI_CYAN = "\u001B[36m";
 	public static final String ANSI_WHITE = "\u001B[37m";
 
-	static final private String MESSAGGIO_BENVENUTO = "HW2\n"+
+	public static final String MESSAGGIO_BENVENUTO = "HW3\n"+
 			"Ti trovi nell'Universita', ma oggi e' diversa dal solito...\n" +
 			"Meglio andare al piu' presto in biblioteca a studiare. Ma dov'e'?\n"+
 			"I locali sono popolati da strani personaggi, " +
@@ -41,7 +42,8 @@ public class DiaDia {
 
 	private Partita partita;
 	private IO io;
-	private String labirintoScelto;
+	@SuppressWarnings("unused")
+	private Labirinto labirintoScelto;
 
 	public IO getIo() {
 		return io;
@@ -51,10 +53,19 @@ public class DiaDia {
 		this.io = io;
 	}
 
-	public DiaDia(IO io, String labirinto) {
+	public DiaDia(IO io, Labirinto labirinto) {
 		this.io = io;
 		this.labirintoScelto = labirinto;
-		this.partita = new Partita(new LabirintoBuilder().creaLabirinto(labirintoScelto));
+		this.partita = new Partita(labirinto);
+		
+	}
+	
+	public DiaDia(IO io, String labirinto) {
+		this.io = io;
+		LabirintoBuilder l = new LabirintoBuilder();
+		l.creaLabirinto(labirinto);
+		this.labirintoScelto = l.getLabirinto();
+		this.partita = new Partita(l.getLabirinto());
 		
 	}
 
@@ -79,15 +90,23 @@ public class DiaDia {
 		FabbricaDiComandi factory = new FabbricaDiComandiFisarmonica();
 		
 		comandoDaEseguire = factory.costruisciComando(istruzione);
-		comandoDaEseguire.esegui(this.partita);
+		comandoDaEseguire.esegui(this.getPartita());
 		
-		if (this.partita.vinta())
+		if (this.getPartita().vinta())
 			this.io.mostraMessaggio("Hai vinto!");
 		
-		if (!this.partita.giocatoreIsVivo())
+		if (!this.getPartita().giocatoreIsVivo())
 			this.io.mostraMessaggio("Hai esaurito i CFU...");
-		return this.partita.isFinita();
+		return this.getPartita().isFinita();
 	}   
+
+	public Partita getPartita() {
+		return partita;
+	}
+
+	public void setPartita(Partita partita) {
+		this.partita = partita;
+	}
 
 	public static void main(String[] argc) {
 		String labirinto ="Università";

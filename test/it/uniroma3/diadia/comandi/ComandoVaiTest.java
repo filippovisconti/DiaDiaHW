@@ -1,11 +1,17 @@
 package it.uniroma3.diadia.comandi;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import it.uniroma3.diadia.Fixture;
 import it.uniroma3.diadia.IOConsole;
+import it.uniroma3.diadia.IOSimulator;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.ambienti.Stanza; 
 
@@ -52,4 +58,23 @@ public class ComandoVaiTest {
 		
 		assertEquals(s2, this.p.getLabirinto().getStanzaCorrente());
 	}
+	
+	@Test
+    public void testPartitaConComandoVai() {
+		Map<Integer, String> comandiDaEseguire= new HashMap<Integer, String>();
+        comandiDaEseguire.put(1, "vai sud");
+        comandiDaEseguire.put(2, "fine");
+        IOSimulator io= Fixture.creaSimulazionePartitaEGioca(comandiDaEseguire);
+        assertTrue(io.hasNextMessaggio());
+        assertContains("Ti trovi nell'Universita", io.nextMessaggio());
+//        assertTrue(io.hasNextMessaggio());
+//        assertContains("Aula N10", io.nextMessaggio()); //ci sono anche delle stampe che indicano le uscite e gli attrezzi
+//        assertTrue(io.hasNextMessaggio());
+//        assertEquals("Numero di cfu: 19", io.nextMessaggio());
+//        assertEquals("Hai vinto!", io.nextMessaggio());
+    }
+
+    public void assertContains(String expected, String interaRiga) {
+        assertTrue(interaRiga.contains(expected));
+    }
 }

@@ -8,7 +8,7 @@ public class ComandoGuarda implements Comando {
 	public static final String ANSI_YELLOW = "\u001B[33m";
 	public static final String ANSI_RESET = "\u001B[0m";
 	private IO io;
-	
+
 	@Override
 	public void esegui(Partita partita) {
 		StringBuilder s = new StringBuilder();
@@ -25,5 +25,7 @@ public class ComandoGuarda implements Comando {
 	public void setIO(IO console) {
 		this.io = console;
 	}
-
+	public ComandoGuarda() {
+		// TODO Auto-generated constructor stub
+	}
 }

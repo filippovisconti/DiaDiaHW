@@ -9,10 +9,6 @@ public class ComandoVai implements Comando {
 	private String direzione; 
 	private IO io;
 
-	public ComandoVai() {
-		// TODO Auto-generated constructor stub
-	}
-
 	@Override
 	public void esegui(Partita partita) {
 		String next = direzione;
