@@ -21,16 +21,20 @@ public class Partita {
 	private Giocatore giocatore = null;
 	
 	public Partita(){
-		this.setLabirinto(new Labirinto("Uni"));
+		LabirintoBuilder l= new LabirintoBuilder();
+		l.creaLabirinto("Universita");
+		this.setLabirinto(l.getLabirinto());
+		this.setGiocatore(new Giocatore(CFU_INIZIALI));
+		this.finita = false;
+		
+	}
+	
+	public Partita(Labirinto labirinto){
+		this.setLabirinto(labirinto);
 		this.setGiocatore(new Giocatore(CFU_INIZIALI));
 		this.finita = false;
 
 	}
-
-    /**
-     * Crea tutte le stanze e le porte di collegamento
-     */
-    
 
 	public Stanza getStanzaVincente() {
 		return this.labirinto.getStanzaVincente();

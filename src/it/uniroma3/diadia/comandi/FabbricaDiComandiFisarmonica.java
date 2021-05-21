@@ -15,6 +15,12 @@ public class FabbricaDiComandiFisarmonica implements FabbricaDiComandi {
 
 	@Override
 	public Comando costruisciComando(String istruzione) {
+		
+		if(istruzione == null) {
+			Comando comando = new ComandoNonValido(); 
+			comando.setIO(new IOConsole());
+			return comando;
+		}
 		@SuppressWarnings("resource")
 		Scanner scannerDiParole = new Scanner(istruzione);
 		nomeComando = null;

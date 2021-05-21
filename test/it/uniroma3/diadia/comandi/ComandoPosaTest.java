@@ -8,15 +8,15 @@ import org.junit.Test;
 
 import it.uniroma3.diadia.IOConsole;
 import it.uniroma3.diadia.Partita;
-import it.uniroma3.diadia.ambienti.Stanza;
+//import it.uniroma3.diadia.ambienti.Stanza;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 public class ComandoPosaTest {
 	
 	private Partita p = new Partita();
 	private ComandoPosa c;
-	private Stanza s1 = new Stanza("serra");
-	private Stanza s2 = new Stanza("veranda");
+//	private Stanza s1 = new Stanza("serra");
+//	private Stanza s2 = new Stanza("veranda");
 	private Attrezzo a1 = new Attrezzo("spartito", 1); 
 
 	@Before
@@ -32,10 +32,10 @@ public class ComandoPosaTest {
 	@Test
 	public void eseguiPosaNull() {
 		
-		int n = this.p.getGiocatore().getBorsa().getNumeroAttrezzi();
+		int n = this.p.getGiocatore().getBorsa().getDimensione();
 		this.c.setParametro(null);
 		this.c.esegui(p);
-		assertEquals(n, this.p.getGiocatore().getBorsa().getNumeroAttrezzi());
+		assertEquals(n, this.p.getGiocatore().getBorsa().getDimensione());
 	}
 	
 	@Test
