@@ -17,17 +17,19 @@ public class ComandoVai implements Comando {
 			this.io.mostraMessaggio("Dove vuoi andare?");
 
 		} 		
-		Stanza prossimaStanza = null;
-		prossimaStanza = partita.getStanzaCorrente().getStanzaAdiacente(next); // originale direzione, non next
-
-		if (prossimaStanza == null)
-			this.io.mostraMessaggio("Direzione inesistente");
 		else {
-			partita.setStanzaCorrente(prossimaStanza);
-			partita.getGiocatore().decrementaCfu();
-			this.io.mostraMessaggio("Hai ancora " +  partita.getGiocatore().getCfu() + " cfu rimanenti.");
+			Stanza prossimaStanza = null;
+			prossimaStanza = partita.getStanzaCorrente().getStanzaAdiacente(next); // originale direzione, non next
+
+			if (prossimaStanza == null)
+				this.io.mostraMessaggio("Direzione inesistente");
+			else {
+				partita.setStanzaCorrente(prossimaStanza);
+				partita.getGiocatore().decrementaCfu();
+				this.io.mostraMessaggio("Hai ancora " +  partita.getGiocatore().getCfu() + " cfu rimanenti.");
+			}
+			this.io.mostraMessaggio(partita.getStanzaCorrente().getDescrizione());
 		}
-		this.io.mostraMessaggio(partita.getStanzaCorrente().getDescrizione());
 	}
 
 	@Override

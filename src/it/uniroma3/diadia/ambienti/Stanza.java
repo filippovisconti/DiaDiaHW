@@ -2,6 +2,8 @@ package it.uniroma3.diadia.ambienti;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
+
 import it.uniroma3.diadia.attrezzi.*;
 
 /**
@@ -159,6 +161,27 @@ public class Stanza {
 	 */
 	public Attrezzo removeAttrezzo(String nomeAttrezzo) {
 		return this.attrezzi.remove(nomeAttrezzo);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(attrezzi, nome, stanzeAdiacenti);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		Stanza other = (Stanza) obj;
+		return Objects.equals(attrezzi, other.attrezzi) && Objects.equals(nome, other.nome)
+				&& Objects.equals(stanzeAdiacenti, other.stanzeAdiacenti);
 	}
 
 }

@@ -13,6 +13,8 @@ public class LabirintoTest {
 	@Test
 	public void testLabirinto() {
 		// verifichiamo che il labirinto abbia una stanza corrente e una vincente
+		l.setStanzaCorrente(testingRoom);
+		l.setStanzaVincente(winningRoom);
 		assertNotNull(l.getStanzaCorrente());
 		assertNotNull(l.getStanzaVincente());
 		

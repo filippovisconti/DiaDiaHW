@@ -13,6 +13,8 @@ import it.uniroma3.diadia.Fixture;
 import it.uniroma3.diadia.IOConsole;
 import it.uniroma3.diadia.IOSimulator;
 import it.uniroma3.diadia.Partita;
+//import it.uniroma3.diadia.ambienti.Labirinto;
+//import it.uniroma3.diadia.ambienti.LabirintoBuilder;
 import it.uniroma3.diadia.ambienti.Stanza; 
 
 
@@ -59,6 +61,34 @@ public class ComandoVaiTest {
 		assertEquals(s2, this.p.getLabirinto().getStanzaCorrente());
 	}
 	
+	@Test
+	public void testEseguiDirezioneSbagliata() {
+		this.p.getLabirinto().setStanzaCorrente(s1);
+		this.s1.impostaStanzaAdiacente("est", s2);
+		
+		this.c.setParametro("nord");
+		this.c.esegui(p);
+		assertEquals(s1, this.p.getLabirinto().getStanzaCorrente());
+	}
+	
+//	@Test
+//	public void testPartitaMonolocale() {
+//		Fallisce, da verificare
+//		LabirintoBuilder builder = new LabirintoBuilder();
+//		builder.addStanza("ingresso");
+//		builder.setLabirinto(new Labirinto("Uni"));
+//		Labirinto l = builder.getLabirinto();
+//		l.setStanzaCorrente(builder.getUltimaAggiunta());
+//		l.setStanzaVincente(builder.getUltimaAggiunta());
+//		Map<Integer, String> comandiDaEseguire= new HashMap<Integer, String>();
+//		IOSimulator io = Fixture.creaSimulazionePartitaEGioca(comandiDaEseguire);
+//		assertTrue(io.hasNextMessaggio());
+//		assertContains("Ti trovi nell'Universita", io.nextMessaggio());
+//		assertTrue(io.hasNextMessaggio());
+//		assertEquals("Hai vinto!", io.nextMessaggio());
+//	}
+	
+
 	@Test
     public void testPartitaConComandoVai() {
 		Map<Integer, String> comandiDaEseguire= new HashMap<Integer, String>();

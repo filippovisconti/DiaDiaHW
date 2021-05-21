@@ -24,7 +24,7 @@ public class LabirintoBuilderTest {
 	public void setUp() throws Exception {
 		this.c.setIO(new IOConsole());
 		this.testBuilder = new LabirintoBuilder();
-		this.testBuilder.creaLabirinto("nome");
+		this.testBuilder.creaLabirinto("Universita");
 		this.testLab = null;
 		this.p = new Partita(testBuilder.getLabirinto());
 	}
@@ -37,11 +37,11 @@ public class LabirintoBuilderTest {
 	@Test
 	public void testCreaUniversità() {
 		this.testBuilder.creaUniversità();
-		assertEquals("Biblioteca", testBuilder.getLabirinto().getStanzaVincente().getNome());
+		assertEquals("Aula Magna", testBuilder.getLabirinto().getStanzaVincente().getNome());
 		assertEquals("Atrio", testBuilder.getLabirinto().getStanzaCorrente().getNome());
 		this.c.setParametro("est");
 		this.c.esegui(p);
-		assertEquals("Aula N11", testBuilder.getLabirinto().getStanzaCorrente().getNome());
+		assertEquals("Aula N11", p.getStanzaCorrente().getNome());
 	}
 
 	@Test
@@ -65,7 +65,7 @@ public class LabirintoBuilderTest {
 	@Test
 	public void testAddAdiacenza() {
 		this.testBuilder.addStanza("salone");
-		this.testBuilder.addStanza("scale ");
+		this.testBuilder.addStanza("scale");
 		this.testBuilder.addAdiacenza("salone", "scale", "sud");
 		assertEquals("scale", this.testBuilder.getDbStanze().get("salone").getStanzaAdiacente("sud").getNome());
 	}

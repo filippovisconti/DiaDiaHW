@@ -38,7 +38,7 @@ public class DiaDia {
 			"Ci sono attrezzi che potrebbero servirti nell'impresa:\n"+
 			"puoi raccoglierli, usarli, posarli quando ti sembrano inutili\n" +
 			"o regalarli se pensi che possano ingraziarti qualcuno.\n\n"+
-			"Per conoscere le istruzioni usa il comando \u001B[32m 'aiuto'\u001B[0m. ";
+			"Per conoscere le istruzioni usa il comando \u001B[32m 'aiuto'\u001B[0m.";
 
 	private Partita partita;
 	private IO io;
@@ -109,7 +109,7 @@ public class DiaDia {
 	}
 
 	public static void main(String[] argc) {
-		String labirinto ="Università";
+		String labirinto ="Universita";
 		DiaDia gioco = new DiaDia(new IOConsole(), labirinto);
 		gioco.gioca();
 	}
