@@ -3,7 +3,10 @@ package it.uniroma3.diadia.comandi;
 import it.uniroma3.diadia.IO;
 import it.uniroma3.diadia.Partita;
 
-public class ComandoAiuto implements Comando {
+public class ComandoAiuto extends AbstractComando {
+	
+	public ComandoAiuto() {
+	}
 	
 	public static final String ANSI_YELLOW = "\u001B[33m";
 	public static final String ANSI_CYAN = "\u001B[36m";
@@ -23,15 +26,6 @@ public class ComandoAiuto implements Comando {
 		s.append(ANSI_RESET + "$ ");
 		this.io.mostraMessaggio(s.toString());
 
-	}
-
-	@Override
-	public void setParametro(String parametro) {
-	}
-
-	@Override
-	public void setIO(IO console) {
-		this.io = console;
 	}
 
 }

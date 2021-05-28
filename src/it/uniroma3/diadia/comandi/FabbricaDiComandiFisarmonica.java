@@ -14,10 +14,10 @@ public class FabbricaDiComandiFisarmonica implements FabbricaDiComandi {
 	}
 
 	@Override
-	public Comando costruisciComando(String istruzione) {
+	public AbstractComando costruisciComando(String istruzione) {
 		
 		if(istruzione == null) {
-			Comando comando = new ComandoNonValido(); 
+			AbstractComando comando = new ComandoNonValido(); 
 			comando.setIO(new IOConsole());
 			return comando;
 		}
@@ -25,7 +25,7 @@ public class FabbricaDiComandiFisarmonica implements FabbricaDiComandi {
 		Scanner scannerDiParole = new Scanner(istruzione);
 		nomeComando = null;
 		parametro = null;
-		Comando comando = null;
+		AbstractComando comando = null;
 		
 		if (scannerDiParole.hasNext())
 			nomeComando = scannerDiParole.next();// prima parola: nome del comando

@@ -21,8 +21,7 @@ public class Partita {
 	private Giocatore giocatore = null;
 	
 	public Partita(){
-		LabirintoBuilder l= new LabirintoBuilder();
-		l.creaLabirinto("Universita");
+		LabirintoBuilder l= new LabirintoBuilder("Universita");
 		this.setLabirinto(l.getLabirinto());
 		this.setGiocatore(new Giocatore(CFU_INIZIALI));
 		this.finita = false;

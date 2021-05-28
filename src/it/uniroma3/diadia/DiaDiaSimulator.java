@@ -1,7 +1,8 @@
 package it.uniroma3.diadia;
 
 import it.uniroma3.diadia.ambienti.LabirintoBuilder;
-import it.uniroma3.diadia.comandi.Comando;
+import it.uniroma3.diadia.comandi.AbstractComando;
+import it.uniroma3.diadia.comandi.ComandoNonValido;
 import it.uniroma3.diadia.comandi.FabbricaDiComandi;
 import it.uniroma3.diadia.comandi.FabbricaDiComandiFisarmonica;
 
@@ -27,8 +28,7 @@ public class DiaDiaSimulator  {
 	public DiaDiaSimulator(IOSimulator io, String labirinto) {
 		this.io = io;
 		this.labirintoScelto = labirinto;
-		LabirintoBuilder l= new LabirintoBuilder();
-		l.creaLabirinto(labirintoScelto);
+		LabirintoBuilder l= new LabirintoBuilder(labirintoScelto);
 		this.setPartita(new Partita(l.getLabirinto()));
 		this.output = new IOConsole();
 	}
@@ -55,10 +55,16 @@ public class DiaDiaSimulator  {
 	 * @return true se l'istruzione e' eseguita e il gioco continua, false altrimenti
 	 */
 	private boolean processaIstruzione(String istruzione) {
-		Comando comandoDaEseguire;
+		AbstractComando comandoDaEseguire;
 		FabbricaDiComandi factory = new FabbricaDiComandiFisarmonica();
 		
-		comandoDaEseguire = factory.costruisciComando(istruzione);
+		try {
+			comandoDaEseguire = factory.costruisciComando(istruzione);
+		} catch (Exception e) {
+			comandoDaEseguire = new ComandoNonValido();
+			e.printStackTrace();
+		}
+		
 		comandoDaEseguire.esegui(this.getPartita());
 		
 		if (this.getPartita().vinta())

@@ -89,7 +89,7 @@ public class ComandoVaiTest {
 //	}
 	
 
-	@Test
+	@Test(timeout = 500)
     public void testPartitaConComandoVai() {
 		Map<Integer, String> comandiDaEseguire= new HashMap<Integer, String>();
         comandiDaEseguire.put(1, "vai sud");

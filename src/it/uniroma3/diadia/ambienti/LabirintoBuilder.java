@@ -25,7 +25,13 @@ public class LabirintoBuilder {
 //	Stanza atrio, aulaN18, aulaN11, aulaN10, laboratorio, biblioteca, mensa, aulaMagna, segreteria, ufficiProf;
 
 
-	public LabirintoBuilder() {
+	public LabirintoBuilder(String nomeLabirinto) {
+		l = creaLabirinto(nomeLabirinto);
+		
+	}
+
+	public void creaUniversità() {
+		this.l = new Labirinto("Università");
 		
 		/* crea gli attrezzi */
 //	    Attrezzo vaso = new Attrezzo("vaso", 2);
@@ -57,10 +63,6 @@ public class LabirintoBuilder {
 		dbStanze.put("segreteria", new Stanza("Segreteria"));
 		dbStanze.put("ufficiProf", new StanzaBloccata("Uffici dei professori", dbAttrezzi.get("chiave").getNome(), "est"));
 		
-	}
-
-	public void creaUniversità() {
-		this.l = new Labirinto("Università");
 
 		/* collega le stanze */
 		dbStanze.get("atrio").impostaStanzaAdiacente("nord", dbStanze.get("aulaMagna"));
@@ -159,6 +161,9 @@ public class LabirintoBuilder {
 		return this.ultimaAggiunta.addAttrezzo(new Attrezzo(nomeAttrezzo, peso));
 	}
 	
+	public boolean addAttrezzoInStanza(Attrezzo attrezzo, String nomeStanza) {
+		return this.dbStanze.get(nomeStanza).addAttrezzo(attrezzo);
+	}
 	
 	public Labirinto getLabirinto() {
 		return l;

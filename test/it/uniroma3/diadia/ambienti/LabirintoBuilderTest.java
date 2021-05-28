@@ -23,8 +23,7 @@ public class LabirintoBuilderTest {
 	@Before
 	public void setUp() throws Exception {
 		this.c.setIO(new IOConsole());
-		this.testBuilder = new LabirintoBuilder();
-		this.testBuilder.creaLabirinto("Universita");
+		this.testBuilder = new LabirintoBuilder("Universita");
 		this.testLab = null;
 		this.p = new Partita(testBuilder.getLabirinto());
 	}

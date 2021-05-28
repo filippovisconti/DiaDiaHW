@@ -2,9 +2,10 @@ package it.uniroma3.diadia;
 
 import it.uniroma3.diadia.ambienti.Labirinto;
 import it.uniroma3.diadia.ambienti.LabirintoBuilder;
-import it.uniroma3.diadia.comandi.Comando;
+import it.uniroma3.diadia.comandi.AbstractComando;
+import it.uniroma3.diadia.comandi.ComandoNonValido;
 import it.uniroma3.diadia.comandi.FabbricaDiComandi;
-import it.uniroma3.diadia.comandi.FabbricaDiComandiFisarmonica;
+import it.uniroma3.diadia.comandi.FabbricaDiComandiRiflessiva;
 
 /**
  * Classe principale di diadia, un semplice gioco di ruolo ambientato al dia.
@@ -30,7 +31,7 @@ public class DiaDia {
 	public static final String ANSI_CYAN = "\u001B[36m";
 	public static final String ANSI_WHITE = "\u001B[37m";
 
-	public static final String MESSAGGIO_BENVENUTO = "HW3\n"+
+	public static final String MESSAGGIO_BENVENUTO = "HW4\n"+
 			"Ti trovi nell'Universita', ma oggi e' diversa dal solito...\n" +
 			"Meglio andare al piu' presto in biblioteca a studiare. Ma dov'e'?\n"+
 			"I locali sono popolati da strani personaggi, " +
@@ -62,8 +63,7 @@ public class DiaDia {
 	
 	public DiaDia(IO io, String labirinto) {
 		this.io = io;
-		LabirintoBuilder l = new LabirintoBuilder();
-		l.creaLabirinto(labirinto);
+		LabirintoBuilder l = new LabirintoBuilder(labirinto);
 		this.labirintoScelto = l.getLabirinto();
 		this.partita = new Partita(l.getLabirinto());
 		
@@ -86,10 +86,16 @@ public class DiaDia {
 	 * @return true se l'istruzione e' eseguita e il gioco continua, false altrimenti
 	 */
 	private boolean processaIstruzione(String istruzione) {
-		Comando comandoDaEseguire;
-		FabbricaDiComandi factory = new FabbricaDiComandiFisarmonica();
+		AbstractComando comandoDaEseguire;
+		FabbricaDiComandi factory = new FabbricaDiComandiRiflessiva();
 		
-		comandoDaEseguire = factory.costruisciComando(istruzione);
+		try {
+			comandoDaEseguire = factory.costruisciComando(istruzione);
+		} catch (Exception e) {
+			comandoDaEseguire = new ComandoNonValido();
+			e.printStackTrace();
+		}
+		comandoDaEseguire.setIO(this.getIo());
 		comandoDaEseguire.esegui(this.getPartita());
 		
 		if (this.getPartita().vinta())

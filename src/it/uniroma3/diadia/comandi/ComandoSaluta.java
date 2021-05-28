@@ -2,15 +2,16 @@ package it.uniroma3.diadia.comandi;
 
 import it.uniroma3.diadia.Partita;
 
-public class ComandoNonValido extends AbstractComando {
+public class ComandoSaluta extends AbstractComando {
 
-	public ComandoNonValido() {
+	public ComandoSaluta() {
 		// TODO Auto-generated constructor stub
 	}
+
 	@Override
 	public void esegui(Partita partita) {
-		this.getIO().mostraMessaggio("Comando sconosciuto.");
-	}
+		// TODO Auto-generated method stub
 
+	}
 
 }
